@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     timestamp: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     source: {
       type: DataTypes.TEXT,

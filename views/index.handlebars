@@ -13,23 +13,25 @@
     <div class="col-12">
       <h2>Starred:</h2>
       <div id="buttonParent">
-        <input class="btn btn-primary" type="button" value="Show Trashed Messages" id="btn1"/> <input class="btn btn-primary" type="button" value="Score" id="score"/> 
+        <input class="btn btn-primary" type="button" value="Show Trashed Messages" id="btn1"/>
+         <input class="btn btn-primary" type="button" value="Score" id="score"/> 
+         <input class="" type="text" value="" id="highlight"/> 
+         <input type="submit" name="" id="highlightButton">
       </div>
-      <div class="divTrash">
+
         {{#each messages}}
           {{#if isTrashed}}
             {{> messageIsTrashed/messageTrash }}
           {{/if}}
         {{/each}}
-      </div>
-      
-      <div class="divUntrash">
+     
         {{#each messages}}
         {{#unless isTrashed}}
             {{> messagesIsUntrashed/messageUntrash }}
           {{/unless}}
         {{/each}}
-      </div>
+
+        <div class="unTrashNewScore"></div>  
     </div>
   </div>
 </div>
