@@ -1,4 +1,5 @@
 // Function to Delete the message 
+function trash(){
   $(".trash").on('click',function(event) {
     event.preventDefault();
     id = $(this).data("id"),
@@ -25,6 +26,8 @@
       }
     );
   });
+}
+trash();
 
 //Function to Star the message 
 $(document).on('click','.star',function(event) {
@@ -89,7 +92,6 @@ function printscoreUnTrashmessage(dbscore){
   $('.unTrashNewScore').empty();
   for (let i = 0; i < dbscore.length; i++) {
       if (dbscore[i].isTrashed == false){
-        starChecked();
         $('.unTrashNewScore').append(
           `<div class="card">
               <div class="card-body">
@@ -112,6 +114,8 @@ function printscoreUnTrashmessage(dbscore){
                 </div>
               </div>
             </div>`);
+            starChecked();
+            trash();
       }
     }
 };
