@@ -1,5 +1,7 @@
-    var count = 0;
-    // Send the PUT request.
+    // function count star
+    function starcount(){
+      var count = 0;
+      // Send the PUT request.
     $.ajax("/api/starred",{
       type: "GET",
     }).then(
@@ -13,6 +15,8 @@
         $(".Starred").text("Starred: " +count);
       }
     );
+    }
+    starcount()
 
 
 // Function to Delete the message 
@@ -72,6 +76,7 @@ function star(){
       function(dbstar) {
         console.log("updated", dbstar);
         starChecked();
+        starcount();
         location.reload();
       }
     );
