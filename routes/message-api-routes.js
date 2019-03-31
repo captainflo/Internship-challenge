@@ -18,16 +18,23 @@ module.exports = function(app) {
        });
     });
 
-      // Get route for retrieving all of the Messages
-      app.get("/content", function(req, res) {
-        db.Message.findAll({}).then(function(dbMessage) {
-          
-          //modify content 
-          // creqte new obj
-          // send new obj to hqndlebqrs
+    // Get route for retrieving all of starred
+    app.get("/api/starred", function(req, res) {
+      db.Message.findAll({}).then(function(data) {
+          res.json(data);
+       });
+    });
 
-          res.render('index',{ messages: dbMessage });
-         });
+  // Get route for retrieving all of the Messages
+    app.get("/content", function(req, res) {
+      db.Message.findAll({}).then(function(dbMessage) {
+        
+        //modify content 
+        // creqte new obj
+        // send new obj to hqndlebqrs
+
+        res.render('index',{ messages: dbMessage });
+        });
       });
 
 

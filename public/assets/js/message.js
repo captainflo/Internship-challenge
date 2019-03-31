@@ -1,3 +1,20 @@
+    var count = 0;
+    // Send the PUT request.
+    $.ajax("/api/starred",{
+      type: "GET",
+    }).then(
+      function(data) {
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          if(data[i].isStarred == true){
+            count += 1;
+          }
+        }
+        $(".Starred").text("Starred: " +count);
+      }
+    );
+
+
 // Function to Delete the message 
 function trash(){
   $(".trash").on('click',function(event) {
@@ -30,33 +47,39 @@ function trash(){
 trash();
 
 //Function to Star the message 
-$(document).on('click','.star',function(event) {
-  event.preventDefault();
-  id = $(this).data("id");
-
-  if($(this).data("star") === true){
-    $(this).data("star", false);
-  }else{
-    $(this).data("star", true);
-  }
-
-  var star = {
-    id: id,
-    isStarred: $(this).data("star")
-  };
-
-  console.log(star);
-  // Send the PUT request.
-  $.ajax("/api/star",{
-    type: "PUT",
-    data: star
-  }).then(
-    function(dbstar) {
-      console.log("updated", dbstar);
-      starChecked();
+function star(){
+  $(".star").on('click',function(event) {
+    event.preventDefault();
+    id = $(this).data("id");
+  
+    if($(this).data("star") === true){
+      $(this).data("star", false);
+    }else{
+      $(this).data("star", true);
     }
-  );
-})
+  
+    var star = {
+      id: id,
+      isStarred: $(this).data("star")
+    };
+  
+    console.log(star);
+    // Send the PUT request.
+    $.ajax("/api/star",{
+      type: "PUT",
+      data: star
+    }).then(
+      function(dbstar) {
+        console.log("updated", dbstar);
+        starChecked();
+        location.reload();
+      }
+    );
+  })
+}
+
+star();
+
 
 // Check if isStarred is true
 function starChecked(){
@@ -114,10 +137,13 @@ function printscoreUnTrashmessage(dbscore){
                 </div>
               </div>
             </div>`);
-            starChecked();
             trash();
+            starChecked();
+            star();
       }
     }
+    
+
 };
 
 // Tooggle Message
